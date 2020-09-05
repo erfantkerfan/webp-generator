@@ -148,7 +148,7 @@ def ownership():
         except:
             pass
         try:
-            chmod = subprocess.Popen('sudo chmod -R 777 ' + DIR_CDN, shell=True, stdout=subprocess.PIPE,
+            chmod = subprocess.Popen('sudo chmod -R 776 ' + DIR_CDN, shell=True, stdout=subprocess.PIPE,
                                      stderr=subprocess.PIPE)
             status2 = chmod.wait()
         except:
@@ -167,7 +167,7 @@ def spill_error_log():
         if status1 != 0:
             cprint('chown -R sftp:www-data ' + DIR_CDN + ' ---> failed', 'red')
         if status2 != 0:
-            cprint('chmod -R 777 ' + DIR_CDN + ' ---> failed', 'red')
+            cprint('chmod -R 776 ' + DIR_CDN + ' ---> failed', 'red')
     cprint('↑' * 100, 'red')
 
 
@@ -183,7 +183,7 @@ def spill_statistic_log():
         if status1 == 0:
             cprint('chown -R sftp:www-data ' + DIR_CDN + ' ---> success', 'green')
         if status2 == 0:
-            cprint('chmod -R 777 ' + DIR_CDN + ' ---> success', 'green')
+            cprint('chmod -R 776 ' + DIR_CDN + ' ---> success', 'green')
     cprint('↑' * 100, 'green')
 
 

@@ -24,12 +24,12 @@ DIR_CDN = '/alaa_media/cdn'
 PRODUCTION = platform.system() != 'Windows'
 
 count = {
-    "all": 0,
-    "jpg": 0,
-    "webp": 0,
-    "fail": 0,
-    "success": 0,
-    "time": '00:00:00',
+    'all': 0,
+    'jpg jpeg png': 0,
+    'webp': 0,
+    'fail': 0,
+    'success': 0,
+    'time': '00:00:00',
 }
 errors = []
 status1 = None
@@ -103,10 +103,10 @@ def convert():
             fp = os.path.join(dirpath, file)
 
             # skip if it is symbolic link or not jpg file
-            if os.path.islink(fp) or not fp.lower().endswith(('.jpg', '.jpeg')):
+            if os.path.islink(fp) or not fp.lower().endswith(('.jpg', '.jpeg', 'png')):
                 continue
 
-            count['jpg'] += 1
+            count['jpg jpeg png'] += 1
             if os.path.exists(fp + '.webp') and os.path.getsize(fp + '.webp') > EMPTY_WEBP_MIN_SIZE:
                 count['webp'] += 1
                 continue

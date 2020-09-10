@@ -23,14 +23,9 @@ EMPTY_WEBP_MIN_SIZE = 100
 DIR_CDN = '/alaa_media/cdn'
 PRODUCTION = platform.system() != 'Windows'
 
-count = {
-    'all': 0,
-    'jpg jpeg png': 0,
-    'webp': 0,
-    'fail': 0,
-    'success': 0,
-    'time': '00:00:00',
-}
+keys = ('all', 'jpg jpeg png', 'webp', 'fail', 'success', 'time')
+count = dict.fromkeys(keys, 0)
+
 errors = []
 status1 = None
 status2 = None

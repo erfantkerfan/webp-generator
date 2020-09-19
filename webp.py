@@ -1,13 +1,5 @@
 # -*- coding: utf-8 -*-
 
-"""
-↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-put this in crontab as root user
-0 0 * * * python3 -u /home/alaa/webp/webp.py >> /home/alaa/webp/log.txt 2>&1
-SHELL=/bin/bash
-↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-"""
-
 import os
 import platform
 import random

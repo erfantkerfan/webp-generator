@@ -10,14 +10,15 @@ from threading import Thread
 
 from termcolor import cprint, colored
 
+# user variables for setting up script
 SIMULTANEOUS_THREADS = 20
 EMPTY_WEBP_MIN_SIZE = 100
 DIR_CDN = '/alaa_media/cdn'
-PRODUCTION = platform.system() != 'Windows'
 
+# system variables
+PRODUCTION = platform.system() != 'Windows'
 keys = ('all', 'jpg jpeg png', 'webp', 'fail', 'success', 'time')
 count = dict.fromkeys(keys, 0)
-
 errors = []
 status1 = None
 status2 = None
@@ -34,6 +35,7 @@ class Logo(object):
             time.sleep(0.01)
             try:
                 a = self.logo.pop()
+            # if logo stack is empty fill it again
             except IndexError:
                 spill_statistic_log()
                 self.prepare_logo()
@@ -73,6 +75,7 @@ AAAAAAA                   AAAAAAAllllllll  aaaaaaaaaa  aaaa aaaaaaaaaa  aaaa    
 """
         logos = [simple, large]
         logo = list(random.choice(logos))
+        # revere logo for printing in console
         logo = logo[::-1]
         colors = ['yellow', 'blue', 'magenta']
         color = random.choice(colors)
@@ -98,6 +101,7 @@ def convert():
                 count['webp'] += 1
                 continue
 
+            # throttle the conversion parallel processes
             while threading.activeCount() >= SIMULTANEOUS_THREADS:
                 pass
             threads = [t for t in threads if t.is_alive()]
@@ -110,6 +114,7 @@ def convert():
 
 
 def webp(path):
+    # main convert command execution process
     global count
     command = 'cwebp -quiet -mt -m 6 -q 80 -sharp_yuv -alpha_filter best -pass 10 -segments 4 -af \"' + path + '\" -o \"' + path + '.webp' + '\"'
     try:
@@ -175,18 +180,23 @@ def spill_statistic_log():
 
 
 if __name__ == '__main__':
+    # start timing and showing our logo
     start = time.time()
-
     logo = Logo(1)
     logo_thread = threading.Thread(name='t: Logo', target=logo.loop)
     logo_thread.start()
 
-    ownership()
-    convert()
+    # change ownership and permissions
     ownership()
 
+    # start converting process
+    convert()
+
+    # change ownership and permissions of newly created files
+    ownership()
+
+    # stop logo and print final logs
     logo.run = 0
     logo_thread.join()
-
     spill_error_log()
     spill_statistic_log()

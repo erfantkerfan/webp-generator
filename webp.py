@@ -15,14 +15,6 @@ SIMULTANEOUS_THREADS = 20
 EMPTY_WEBP_MIN_SIZE = 100
 DIR_CDN = '/alaa_media/cdn'
 
-# system variables
-PRODUCTION = platform.system() != 'Windows'
-keys = ('all', 'jpg jpeg png', 'webp', 'fail', 'success', 'time')
-count = dict.fromkeys(keys, 0)
-errors = []
-status1 = None
-status2 = None
-
 
 class Logo(object):
 
@@ -180,6 +172,14 @@ def spill_statistic_log():
 
 
 if __name__ == '__main__':
+    # system variables
+    PRODUCTION = platform.system() != 'Windows'
+    keys = ('all', 'jpg jpeg png', 'webp', 'fail', 'success', 'time')
+    count = dict.fromkeys(keys, 0)
+    errors = []
+    status1 = None
+    status2 = None
+
     # start timing and showing our logo
     start = time.time()
     logo = Logo(1)

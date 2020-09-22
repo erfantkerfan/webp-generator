@@ -94,7 +94,7 @@ def convert():
                 continue
 
             # throttle the conversion parallel processes
-            while threading.activeCount() >= SIMULTANEOUS_THREADS:
+            while threading.activeCount() > SIMULTANEOUS_THREADS:
                 pass
             threads = [t for t in threads if t.is_alive()]
             threads.append(Thread(name='t: ' + str(fp), target=webp, args=(fp,)))

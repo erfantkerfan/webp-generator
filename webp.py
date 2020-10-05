@@ -110,7 +110,7 @@ def webp(path):
     global count
     command = 'cwebp -quiet -mt -m 6 -q 80 -sharp_yuv -alpha_filter best -pass 10 -segments 4 -af \"' + path + '\" -o \"' + path + '.webp' + '\"'
     try:
-        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
         if process.wait() == 0:
             count['success'] += 1
         else:
@@ -125,15 +125,15 @@ def ownership():
     global status1, status2
     if PRODUCTION:
         try:
-            chown = subprocess.Popen('sudo chown -R sftp:www-data ' + DIR_CDN, shell=True, stdout=subprocess.PIPE,
-                                     stderr=subprocess.PIPE)
+            chown = subprocess.Popen('sudo chown -R sftp:www-data ' + DIR_CDN, shell=True, stdout=subprocess.DEVNULL,
+                                     stderr=subprocess.STDOUT)
 
             status1 = chown.wait()
         except:
             pass
         try:
-            chmod = subprocess.Popen('sudo chmod -R 776 ' + DIR_CDN, shell=True, stdout=subprocess.PIPE,
-                                     stderr=subprocess.PIPE)
+            chmod = subprocess.Popen('sudo chmod -R 776 ' + DIR_CDN, shell=True, stdout=subprocess.DEVNULL,
+                                     stderr=subprocess.STDOUT)
             status2 = chmod.wait()
         except:
             pass

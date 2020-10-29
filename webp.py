@@ -12,7 +12,7 @@ from termcolor import cprint, colored
 
 # user variables for setting up script
 SIMULTANEOUS_THREADS = 20
-EMPTY_WEBP_MIN_SIZE = 100
+EMPTY_WEBP_MIN_SIZE = 50
 DIR_CDN = '/alaa_media/cdn'
 
 

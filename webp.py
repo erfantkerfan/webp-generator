@@ -11,7 +11,7 @@ from threading import Thread
 from termcolor import cprint, colored
 
 # user variables for setting up script
-SIMULTANEOUS_THREADS = 20
+SIMULTANEOUS_THREADS = 30
 EMPTY_WEBP_MIN_SIZE = 50
 DIR_CDN = '/alaa_media/cdn'
 
@@ -149,9 +149,9 @@ def spill_error_log():
         print(e)
     if PRODUCTION:
         if status1 != 0:
-            cprint('chown -R sftp:www-data ' + DIR_CDN + ' ---> failed', 'red')
+            cprint('sudo chown -R sftp:www-data ' + DIR_CDN + ' ---> failed', 'red')
         if status2 != 0:
-            cprint('chmod -R 776 ' + DIR_CDN + ' ---> failed', 'red')
+            cprint('sudo chmod -R 776 ' + DIR_CDN + ' ---> failed', 'red')
     cprint('↑' * 100, 'red')
 
 

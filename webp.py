@@ -143,7 +143,7 @@ def spill_error_log():
     global status1, status2
 
     print()
-    cprint(' ' * 45 + 'Error Log:', 'red')
+    cprint(' ' * 45 + 'Error Log: ' + time.ctime(), 'red')
     cprint('↓' * 100, 'red')
     for e in errors:
         print(e)
@@ -160,7 +160,7 @@ def spill_statistic_log():
     end = time.time()
     count['time'] = str(time.strftime('%H:%M:%S', time.gmtime(end - start)))
     print()
-    cprint(' ' * 45 + 'Summary Log:', 'green')
+    cprint(' ' * 45 + 'Summary Log: ' + time.ctime(), 'green')
     cprint('↓' * 100, 'green')
     cprint(str(count), 'green')
     if PRODUCTION:
